@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "887115391101",
+    "project_id": "aather",
+    "storage_bucket": "aather.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:887115391101:android:5b8f84ee6097e22797d114",
+        "android_client_info": {
+          "package_name": "com.example.aather"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQlcBNN3N8BICPAg2xeLp4rpyV087GhmQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/button_speact_to_text"
+        android:layout_width="173dp"
+        android:layout_height="169dp"
+        android:layout_marginTop="4dp"
+        android:text="GO"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button_shake_detection"
+        android:layout_width="173dp"
+        android:layout_height="171dp"
+        android:layout_marginTop="4dp"
+        android:text="shake detection"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/button_speact_to_text"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button_speacttotext"
+        android:layout_width="173dp"
+        android:layout_height="142dp"
+        android:layout_marginTop="52dp"
+        android:text="try2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_speact_to_text" />
+
+    <Button
+        android:id="@+id/button_rotate"
+        android:layout_width="165dp"
+        android:layout_height="139dp"
+        android:layout_marginTop="52dp"
+        android:layout_marginEnd="8dp"
+        android:text="rotate hanndle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/button_speacttotext"
+        app:layout_constraintTop_toBottomOf="@+id/button_shake_detection" />
+
+    <Button
+        android:id="@+id/haptics_activity"
+        android:layout_width="167dp"
+        android:layout_height="125dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="56dp"
+        android:text="haptics training"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_speacttotext" />
+
+    <Button
+        android:id="@+id/noisetester_activity"
+        android:layout_width="173dp"
+        android:layout_height="126dp"
+        android:layout_marginTop="56dp"
+        android:layout_marginEnd="8dp"
+        android:text="noise tester"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/haptics_activity"
+        app:layout_constraintTop_toBottomOf="@+id/button_rotate" />
+
+    <Button
+        android:id="@+id/sosbutton_activity"
+        android:layout_width="169dp"
+        android:layout_height="101dp"
+        android:layout_marginTop="40dp"
+        android:text="sos activity"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.026"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/haptics_activity" />
+
+    <Button
+        android:id="@+id/slidemenu_activity"
+        android:layout_width="168dp"
+        android:layout_height="108dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="8dp"
+        android:text="menu"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.916"
+        app:layout_constraintStart_toEndOf="@+id/sosbutton_activity"
+        app:layout_constraintTop_toBottomOf="@+id/noisetester_activity" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
