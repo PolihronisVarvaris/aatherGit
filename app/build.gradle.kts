@@ -37,13 +37,31 @@ android {
             )
         }
     }
+
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
+
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
+
+    java {
+        toolchain {
+            languageVersion = JavaLanguageVersion.of(17)
+        }
+    }
+
+    kapt {
+        javacOptions {
+            option("-source", "17")
+            option("-target", "17")
+        }
+    }
+
+
+
     buildFeatures {
         viewBinding = true
     }
@@ -80,11 +98,13 @@ dependencies {
     // Firebase
     implementation(platform("com.google.firebase:firebase-bom:33.1.1"))
     implementation("com.google.firebase:firebase-analytics")
-    implementation ("com.google.dagger:hilt-android:2.48")
-    kapt ("com.google.dagger:hilt-android-compiler:2.48")
-    implementation ("com.google.code.gson:gson:2.10")
+    implementation ("com.google.dagger:hilt-android:2.44")
+    kapt ("com.google.dagger:hilt-android-compiler:2.44")
+    implementation ("com.google.code.gson:gson:2.10.1")
     implementation ("com.mesibo.api:webrtc:1.0.5")
     implementation ("com.guolindev.permissionx:permissionx:1.6.1")
+    implementation ("com.google.firebase:firebase-database-ktx:21.0.0")
+
 
 }
 //
