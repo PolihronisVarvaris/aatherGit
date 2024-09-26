@@ -36,7 +36,7 @@ class LoginActivity : AppCompatActivity() {
                     }else{
                         //start moving to our main activity
                         startActivity(Intent(this@LoginActivity, Comunication::class.java).apply {
-                            putExtra("username",usernameEt.text.toString())//Comunication==MainActivity
+                            putExtra("username",usernameEt.text.toString())
                         })
                     }
                 }

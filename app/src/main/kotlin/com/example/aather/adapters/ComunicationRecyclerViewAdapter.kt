@@ -5,9 +5,9 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.example.aather.R
-import com.example.aather.databinding.ItemComunicationRecycleViewBinding
+import com.example.aather.databinding.ItemComunicationRecyclerViewBinding
 
-class ComunicationRecyclerViewAdapter(private val listener:Listener) : RecyclerView.Adapter<ComunicationRecyclerViewAdapter.MainRecyclerViewHolder>() {
+class ComunicationRecyclerViewAdapter(private val listener:Listener) : RecyclerView.Adapter<ComunicationRecyclerViewAdapter.ComunicationRecyclerViewHolder>() {
 
     private var usersList:List<Pair<String,String>>?=null
     fun updateList(list:List<Pair<String,String>>){
@@ -15,18 +15,18 @@ class ComunicationRecyclerViewAdapter(private val listener:Listener) : RecyclerV
         notifyDataSetChanged()
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainRecyclerViewHolder {
-        val binding = ItemComunicationRecycleViewBinding.inflate(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ComunicationRecyclerViewHolder {
+        val binding = ItemComunicationRecyclerViewBinding.inflate(
             LayoutInflater.from(parent.context),parent,false
         )
-        return MainRecyclerViewHolder(binding)
+        return ComunicationRecyclerViewHolder(binding)
     }
 
     override fun getItemCount(): Int {
         return usersList?.size?:0
     }
 
-    override fun onBindViewHolder(holder: MainRecyclerViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ComunicationRecyclerViewHolder, position: Int) {
         usersList?.let { list->
             val user = list[position]
             holder.bind(user,{
@@ -44,7 +44,7 @@ class ComunicationRecyclerViewAdapter(private val listener:Listener) : RecyclerV
 
 
 
-    class MainRecyclerViewHolder(private val binding: ItemComunicationRecycleViewBinding):
+    class ComunicationRecyclerViewHolder(private val binding: ItemComunicationRecyclerViewBinding):
         RecyclerView.ViewHolder(binding.root){
         private val context = binding.root.context
 

@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.aather.adapters.ComunicationRecyclerViewAdapter
+import com.example.aather.databinding.ActivityComunicationBinding
 import com.example.aather.databinding.ActivityMainBinding
 import com.example.aather.repository.ComunicationRepository
 import com.example.aather.service.ComunicationService
@@ -15,7 +16,6 @@ import com.example.aather.service.ComunicationServiceRepository
 import com.example.aather.utils.DataModel
 import com.example.aather.utils.DataModelType
 import com.example.aather.utils.getCameraAndMicPermission
-import com.example.aather.databinding.ActivityComunicationBinding
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 

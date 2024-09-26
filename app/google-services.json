@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "887115391101",
+    "firebase_url": "https://aather-default-rtdb.europe-west1.firebasedatabase.app",
     "project_id": "aather",
     "storage_bucket": "aather.appspot.com"
   },
