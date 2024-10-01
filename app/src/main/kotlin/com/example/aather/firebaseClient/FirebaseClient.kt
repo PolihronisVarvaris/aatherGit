@@ -1,5 +1,6 @@
 package com.example.aather.firebaseClient
 
+import android.util.Log
 import com.example.aather.utils.DataModel
 import com.example.aather.utils.FirebaseFieldNames.LATEST_EVENT
 import com.example.aather.utils.FirebaseFieldNames.PASSWORD
@@ -7,7 +8,10 @@ import com.example.aather.utils.FirebaseFieldNames.STATUS
 import com.example.aather.utils.MyEventListener
 import com.example.aather.utils.UserStatus
 import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.google.gson.Gson
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -125,4 +129,24 @@ class FirebaseClient @Inject constructor(
     interface Listener {
         fun onLatestEventReceived(event:DataModel)
     }
+
+    fun fetchUserUsageFromDatabase(userId: String, callback: (String) -> Unit) {
+        // Get a reference to the Firebase database
+        val database: DatabaseReference = FirebaseDatabase.getInstance().reference
+        // Access the specific user node using userId
+        database.child(userId).child("usage").addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                // Retrieve the usage value
+                val usage = snapshot.getValue(String::class.java) ?: "default"
+                Log.d("FetchUserUsage", "Fetched user usage: $usage")
+                callback(usage) // Pass the value back through a callback
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.e("FetchUserUsage", "Error fetching user usage: ${error.message}")
+                callback("default") // Handle error case
+            }
+        })
+    }
+
 }

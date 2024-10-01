@@ -4,9 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.content.Intent
 import android.widget.Button
-import com.example.aather.ui.Comunication
 import com.example.aather.ui.LoginActivity
-import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.database.FirebaseDatabase
 
 class MainActivity : AppCompatActivity() {
@@ -75,7 +73,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         buttonmenu.setOnClickListener {
-            val intent = Intent(this, Basemenu::class.java)
+            val intent = Intent(this, VolunteerChoice::class.java)
             startActivity(intent)
         }
     }
