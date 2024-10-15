@@ -72,11 +72,11 @@ class VolunteerChoice : AppCompatActivity() {
     private fun postToList() {
         for (i in 1..5) {
             when (i) {
-                1 -> addToList("Title $i", "Description $i", R.drawable.edusignphoto)
-                2 -> addToList("Title $i", "Description $i", R.drawable.edusignphoto)
-                3 -> addToList("Title $i", "Description $i", R.drawable.edusignphoto)
-                4 -> addToList("Title $i", "Description $i", R.drawable.edusignphoto)
-                5 -> addToList("Title $i", "Description $i", R.drawable.edusignphoto)
+                1 -> addToList("Title $i", "Description $i", R.drawable.volunteerbackimage)
+                2 -> addToList("Title $i", "Description $i", R.drawable.colorpickerbackimage)
+                3 -> addToList("Title $i", "Description $i", R.drawable.aiimagetextbackimage)
+                4 -> addToList("Title $i", "Description $i", R.drawable.settingsbackimage)
+                5 -> addToList("Title $i", "Description $i", R.drawable.manualbackimage)
             }
         }
     }

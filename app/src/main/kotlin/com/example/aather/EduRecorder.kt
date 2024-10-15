@@ -1,24 +1,14 @@
 package com.example.aather
 
-import android.app.Activity
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.os.Bundle
 import android.speech.RecognitionListener
 import android.speech.RecognizerIntent
 import android.speech.SpeechRecognizer
-import android.speech.tts.TextToSpeech
 import android.widget.Button
 import android.widget.EditText
-import android.widget.ImageView
 import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
-import java.io.File
-import java.io.FileOutputStream
-import java.io.IOException
 import java.util.Locale
 
 class EduRecorder : AppCompatActivity() {
@@ -27,6 +17,7 @@ class EduRecorder : AppCompatActivity() {
     private lateinit var speechRecognizer: SpeechRecognizer
     private lateinit var recognizerIntent: Intent
     private var isRecording = false
+    private var fullText = "" // Variable to store the full recognized text
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +25,6 @@ class EduRecorder : AppCompatActivity() {
 
         editText = findViewById(R.id.textrecorded)
         val speechToTextBtn = findViewById<Button>(R.id.btnrecorder)
-        val downloadBtn = findViewById<Button>(R.id.btndownload)
 
         // Initialize SpeechRecognizer
         speechRecognizer = SpeechRecognizer.createSpeechRecognizer(this)
@@ -43,6 +33,8 @@ class EduRecorder : AppCompatActivity() {
         recognizerIntent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH).apply {
             putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM)
             putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault())
+            putExtra(RecognizerIntent.EXTRA_PARTIAL_RESULTS, true)
+            putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, 1) // Return only the top result
         }
 
         speechToTextBtn.setOnClickListener {
@@ -52,17 +44,11 @@ class EduRecorder : AppCompatActivity() {
                 startRecording()
             }
         }
-
-        downloadBtn.setOnClickListener {
-            downloadText()
-        }
-
-
     }
 
     private fun startRecording() {
         isRecording = true
-        editText.setText("") // Clear the existing text
+        // No need to clear the existing text anymore
         speechRecognizer.startListening(recognizerIntent)
         Toast.makeText(this, "Recording started", Toast.LENGTH_SHORT).show()
     }
@@ -72,6 +58,7 @@ class EduRecorder : AppCompatActivity() {
         speechRecognizer.stopListening()
         Toast.makeText(this, "Recording stopped", Toast.LENGTH_SHORT).show()
     }
+
     private fun createRecognitionListener(): RecognitionListener {
         return object : RecognitionListener {
             override fun onReadyForSpeech(params: Bundle?) {
@@ -95,29 +82,22 @@ class EduRecorder : AppCompatActivity() {
             }
 
             override fun onError(error: Int) {
-                // Invoked when an error occurs
-                if (isRecording) {
-                    speechRecognizer.startListening(recognizerIntent)
-                }
+                Toast.makeText(applicationContext, "Error occurred: $error", Toast.LENGTH_SHORT).show()
             }
 
             override fun onResults(results: Bundle?) {
-                // Invoked when recognition results are ready
                 val matches = results?.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION)
-                if (matches != null) {
-                    editText.append(matches[0] + " ")
-                }
-                if (isRecording) {
-                    speechRecognizer.startListening(recognizerIntent)
+                if (matches != null && matches.isNotEmpty()) {
+                    // Append the new recognized text to the existing fullText
+                    fullText += matches[0] + " "
+                    editText.setText(fullText) // Update the EditText with the new full text
                 }
             }
 
             override fun onPartialResults(partialResults: Bundle?) {
-                // Invoked when partial recognition results are available
                 val matches = partialResults?.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION)
-                if (matches != null) {
-                    editText.setText(matches[0])
-                    editText.setSelection(editText.text.length)
+                if (matches != null && matches.isNotEmpty()) {
+                    // Optionally handle partial results
                 }
             }
 
@@ -131,23 +111,6 @@ class EduRecorder : AppCompatActivity() {
         super.onDestroy()
         speechRecognizer.destroy()
     }
-
-    private fun downloadText() {
-        val text = editText.text.toString()
-        if (text.isNotEmpty()) {
-            try {
-                val shareIntent = Intent().apply {
-                    action = Intent.ACTION_SEND
-                    putExtra(Intent.EXTRA_TEXT, text)
-                    type = "text/plain"
-                }
-                startActivity(Intent.createChooser(shareIntent, "Save text using"))
-            } catch (e: Exception) {
-                e.printStackTrace()
-                Toast.makeText(this, "Failed to share text", Toast.LENGTH_SHORT).show()
-            }
-        } else {
-            Toast.makeText(this, "No text to save", Toast.LENGTH_SHORT).show()
-        }
-    }
 }
+
+

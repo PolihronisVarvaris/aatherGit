@@ -75,11 +75,11 @@ class EyesChoice : AppCompatActivity() {
     private fun postToList() {
         for (i in 1..5) {
             when (i) {
-                1 -> addToList("Title $i", "Description $i", R.drawable.mannualphoto)
-                2 -> addToList("Title $i", "Description $i", R.drawable.edusignphoto)
-                3 -> addToList("Title $i", "Description $i", R.drawable.mannualphoto)
-                4 -> addToList("Title $i", "Description $i", R.drawable.edusignphoto)
-                5 -> addToList("Title $i", "Description $i", R.drawable.mannualphoto)
+                1 -> addToList("Title $i", "Description $i", R.drawable.blindbackimage)
+                2 -> addToList("Title $i", "Description $i", R.drawable.scalebackimage)
+                3 -> addToList("Title $i", "Description $i", R.drawable.colorpickerbackimage)
+                4 -> addToList("Title $i", "Description $i", R.drawable.bemyeyesbackimage)
+                5 -> addToList("Title $i", "Description $i", R.drawable.settingsbackimage)
             }
         }
     }

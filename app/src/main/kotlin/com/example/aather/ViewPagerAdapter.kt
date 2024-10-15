@@ -105,10 +105,10 @@ class ViewPagerAdapter(
 
     private fun handleVolunteerClick(position: Int, context: Context): Intent {
         return when (position) {
-            0 -> Intent(context, AiTextImage::class.java)
-            1 -> Intent(context, EduRecorder::class.java)
-            2 -> Intent(context, StarterForm::class.java)
-            3 -> Intent(context, NoiseTester::class.java)
+            0 -> Intent(context, speechtexttry::class.java)
+            1 -> Intent(context, PickColorFilter::class.java)
+            2 -> Intent(context, AiTextImage::class.java)
+            3 -> Intent(context, AiTextImage::class.java)
             4 -> Intent(context, AiTextImage::class.java)
             else -> Intent(context, EarsChoice::class.java)
         }
@@ -116,10 +116,10 @@ class ViewPagerAdapter(
 
     private fun handleEyesClick(position: Int, context: Context): Intent {
         return when (position) {
-            0 -> Intent(context, EarsChoice::class.java)
-            1 -> Intent(context, EduRecorder::class.java)
-            2 -> Intent(context, StarterForm::class.java)
-            3 -> Intent(context, NoiseTester::class.java)
+            0 -> Intent(context, speechtexttry::class.java)
+            1 -> Intent(context, Size_image::class.java)
+            2 -> Intent(context, PickColorFilter::class.java)
+            3 -> Intent(context, AiTextImage::class.java)
             4 -> Intent(context, AiTextImage::class.java)
             else -> Intent(context, EarsChoice::class.java)
         }
@@ -127,9 +127,9 @@ class ViewPagerAdapter(
 
     private fun handleEarsClick(position: Int, context: Context): Intent {
         return when (position) {
-            0 -> Intent(context, EduRecorder::class.java)
-            1 -> Intent(context, EduRecorder::class.java)
-            2 -> Intent(context, StarterForm::class.java)
+            0 -> Intent(context, speechtexttry::class.java)
+            1 -> Intent(context, signEduAi::class.java)
+            2 -> Intent(context, EduRecorder::class.java)
             3 -> Intent(context, NoiseTester::class.java)
             4 -> Intent(context, AiTextImage::class.java)
             else -> Intent(context, EarsChoice::class.java)

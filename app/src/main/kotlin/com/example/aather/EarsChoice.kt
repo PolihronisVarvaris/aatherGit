@@ -75,11 +75,11 @@ class EarsChoice : AppCompatActivity() {
     private fun postToList() {
         for (i in 1..5) {
             when (i) {
-                1 -> addToList("Title $i", "Description $i", R.drawable.mannualphoto)
-                2 -> addToList("Title $i", "Description $i", R.drawable.mannualphoto)
-                3 -> addToList("Title $i", "Description $i", R.drawable.mannualphoto)
-                4 -> addToList("Title $i", "Description $i", R.drawable.mannualphoto)
-                5 -> addToList("Title $i", "Description $i", R.drawable.mannualphoto)
+                1 -> addToList("Title $i", "Description $i", R.drawable.deafbackimage)
+                2 -> addToList("Title $i", "Description $i", R.drawable.edusignbackimage)
+                3 -> addToList("Title $i", "Description $i", R.drawable.edurecorderbackimage)
+                4 -> addToList("Title $i", "Description $i", R.drawable.noicemeterbackimage)
+                5 -> addToList("Title $i", "Description $i", R.drawable.settingsbackimage)
             }
         }
     }

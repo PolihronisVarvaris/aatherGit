@@ -11,6 +11,7 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.aather.ui.LoginActivity
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
@@ -92,9 +93,11 @@ class Intro : AppCompatActivity() {
 
     private fun onLoginClick() {
         // You might want to handle login functionality here
-        val intent = Intent(this, VolunteerChoice::class.java)
+        val intent = Intent(this, LoginActivity::class.java)
         startActivity(intent)
     }
+
+//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
 
     private fun fadeOutButtons(button1: Button, button2: Button, onComplete: () -> Unit) {
         val fadeOut = AnimationUtils.loadAnimation(applicationContext, R.anim.fade_out)

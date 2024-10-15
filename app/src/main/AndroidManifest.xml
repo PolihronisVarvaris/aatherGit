@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PROJECTION" />
     <uses-permission android:name="android.permission.PROJECT_MEDIA"/>
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -29,6 +30,15 @@
     <uses-feature
         android:name="android.hardware.camera"
         android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera.autofocus"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera.front"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera.front.autofocus"
+        android:required="false" />
 
     <application
         android:name=".utils.MyApplication"
@@ -54,7 +64,25 @@
             android:name=".Cameraxtry"
             android:exported="false" />
         <activity
+            android:name=".CameraActivity"
+            android:exported="false" />
+        <activity
+            android:name=".signEduAi"
+            android:exported="false" />
+        <activity
+            android:name=".objectDetectorClass"
+            android:exported="false" />
+        <activity
+            android:name=".CameraZooming"
+            android:exported="false" />
+        <activity
+            android:name=".CameraPicker"
+            android:exported="false" />
+        <activity
             android:name=".SOSbutton"
+            android:exported="false" />
+        <activity
+            android:name=".PickColorFilter"
             android:exported="false" />
         <activity
             android:name=".Intro"
@@ -64,6 +92,9 @@
             android:exported="false" />
         <activity
             android:name=".NoiseTester"
+            android:exported="false" />
+        <activity
+            android:name=".Size_image"
             android:exported="false" />
         <activity
             android:name=".Haptics_firsts"
@@ -118,8 +149,9 @@
                 <action android:name="android.intent.action.SCREEN_ON" />
             </intent-filter>
         </receiver>
-        <service android:name=".service.ComunicationService"
-            android:foregroundServiceType="mediaProjection"/>
+        <service
+            android:name=".service.ComunicationService"
+            android:foregroundServiceType="mediaProjection" />
     </application>
 
 </manifest>

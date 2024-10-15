@@ -63,7 +63,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         buttonNoiseTester.setOnClickListener {
-            val intent = Intent(this, NoiseTester::class.java)
+            val intent = Intent(this, EduRecorder::class.java)
             startActivity(intent)
         }
 

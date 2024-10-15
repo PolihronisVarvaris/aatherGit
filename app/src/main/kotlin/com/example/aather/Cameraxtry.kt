@@ -25,7 +25,7 @@ import java.util.Locale
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
-class Cameraxtry : AppCompatActivity() {
+class Cameraxtry :AppCompatActivity() {
 
     private lateinit var binding: ActivityCameraxtryBinding
     private var imageCapture: ImageCapture? = null
@@ -61,7 +61,6 @@ class Cameraxtry : AppCompatActivity() {
                 mkdir()
             }
         }
-
         return mediaDir ?: filesDir
     }
 
@@ -75,10 +74,7 @@ class Cameraxtry : AppCompatActivity() {
                 .format(System.currentTimeMillis()) + ".jpg"
         )
 
-        val outputOption = ImageCapture
-            .OutputFileOptions
-            .Builder(photoFile)
-            .build()
+        val outputOption = ImageCapture.OutputFileOptions.Builder(photoFile).build()
 
         imageCapture.takePicture(
             outputOption, ContextCompat.getMainExecutor(this),
@@ -95,7 +91,7 @@ class Cameraxtry : AppCompatActivity() {
                     // Save the image to the device gallery
                     saveImageToGallery(savedUri)
 
-                    // Start com.example.aather.AiTextImage activity and pass the photo URI
+                    // Start AiTextImage activity and pass the photo URI
                     val intent = Intent(this@Cameraxtry, AiTextImage::class.java).apply {
                         putExtra("photo_uri", savedUri.toString())
                     }
@@ -104,10 +100,7 @@ class Cameraxtry : AppCompatActivity() {
                 }
 
                 override fun onError(exception: ImageCaptureException) {
-                    Log.e(
-                        Constants.Tag,
-                        "onError: ${exception.message}",
-                        exception)
+                    Log.e(Constants.Tag, "onError: ${exception.message}", exception)
                 }
             }
         )

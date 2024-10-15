@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="#000000">
 
+
     <ImageView
         android:id="@+id/IntroLogo"
         android:layout_width="198dp"
@@ -16,6 +17,58 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imagechoices"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.498"
+        app:srcCompat="@drawable/userusagechoice" />
+
+    <Button
+        android:id="@+id/hearingbutton"
+        android:layout_width="399dp"
+        android:layout_height="229dp"
+        android:background="@android:color/transparent"
+        android:text=""
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/volunteerbutton"
+        android:layout_width="412dp"
+        android:layout_height="247dp"
+        android:background="@android:color/transparent"
+        android:text=""
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/imagechoices"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/eyebutton"
+        android:layout_width="408dp"
+        android:layout_height="260dp"
+        android:layout_marginTop="4dp"
+        android:background="@android:color/transparent"
+        android:text=""
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/volunteerbutton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hearingbutton"
+        app:layout_constraintVertical_bias="1.0" />
+
 
     <Button
         android:id="@+id/signUpButton"
@@ -35,7 +88,7 @@
         android:id="@+id/loginButton"
         android:layout_width="251dp"
         android:layout_height="59dp"
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="64dp"
         android:backgroundTint="@color/black"
         android:text="Login"
         android:textColor="#FFFFFF"
@@ -51,15 +104,15 @@
         android:id="@+id/username"
         android:layout_width="251dp"
         android:layout_height="59dp"
-        android:layout_marginTop="88dp"
+        android:layout_marginTop="64dp"
         android:background="@drawable/rounded_edittext"
-        android:textCursorDrawable="@drawable/cursor_color"
+        android:gravity="center"
         android:hint="Username"
+        android:textAlignment="center"
         android:textColor="#000000"
         android:textColorHint="#000000"
+        android:textCursorDrawable="@drawable/cursor_color"
         android:textStyle="bold"
-        android:gravity="center"
-        android:textAlignment="center"
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -134,54 +187,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.976"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <ImageView
-        android:id="@+id/imagechoices"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/choice" />
-
-    <Button
-        android:id="@+id/hearingbutton"
-        android:layout_width="339dp"
-        android:layout_height="255dp"
-        android:background="@android:color/transparent"
-        android:text=""
-        android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/volunteerbutton"
-        android:layout_width="345dp"
-        android:layout_height="234dp"
-        android:background="@android:color/transparent"
-        android:text=""
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/imagechoices"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/eyebutton"
-        android:layout_width="342dp"
-        android:layout_height="278dp"
-        android:layout_marginTop="4dp"
-        android:background="@android:color/transparent"
-        android:text=""
-        android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/volunteerbutton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.4"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/hearingbutton"
-        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

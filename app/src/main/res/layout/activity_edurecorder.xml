@@ -6,56 +6,71 @@
     android:layout_height="match_parent"
     tools:context=".EduRecorder">
 
+
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/edurecorddownloed"
+        android:src="@drawable/edurecorderdown"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
-        android:id="@+id/btnrecorder"
-        android:layout_width="322dp"
-        android:layout_height="153dp"
-        android:layout_marginTop="88dp"
-        android:text="Button"
+        android:id="@+id/backbutton"
+        android:layout_width="66dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="28dp"
+        android:background="@android:color/transparent"
+        android:text=""
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintHorizontal_bias="0.086"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/btnrecorder"
+        android:layout_width="314dp"
+        android:layout_height="149dp"
+        android:layout_marginTop="104dp"
+        android:background="@android:color/transparent"
+        android:text=""
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/textrecorded"
-        android:layout_width="216dp"
-        android:layout_height="431dp"
+        android:layout_width="250dp"
+        android:layout_height="403dp"
         android:layout_marginBottom="116dp"
         android:layout_weight="1"
         android:gravity="top|start"
+        android:textColor="@color/black"
         android:hint="Say something"
         android:minLines="10"
         android:scrollbars="vertical"
         app:layout_constraintBottom_toBottomOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnrecorder"
-        />
+        app:layout_constraintVertical_bias="0.753" />
 
     <Button
         android:id="@+id/btndownload"
-        android:layout_width="67dp"
-        android:layout_height="62dp"
-        android:layout_marginBottom="40dp"
+        android:layout_width="72dp"
+        android:layout_height="77dp"
+        android:layout_marginBottom="44dp"
+        android:background="@android:color/transparent"
         android:text=""
         app:layout_constraintBottom_toBottomOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.863"
+        app:layout_constraintHorizontal_bias="0.828"
         app:layout_constraintStart_toStartOf="parent" />
 
 

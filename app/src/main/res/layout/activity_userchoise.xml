@@ -7,18 +7,20 @@
 
     <ImageView
         android:id="@+id/imagechoices"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/choice" />
+        app:srcCompat="@drawable/userusagechoice"
+        android:scaleType="centerCrop"
+        app:layout_constraintVertical_bias="0.498" />
 
     <Button
         android:id="@+id/hearingbutton"
-        android:layout_width="336dp"
-        android:layout_height="243dp"
+        android:layout_width="391dp"
+        android:layout_height="230dp"
         android:background="@android:color/transparent"
         android:text=""
         app:layout_constraintEnd_toEndOf="parent"
@@ -27,8 +29,8 @@
 
     <Button
         android:id="@+id/volunteerbutton"
-        android:layout_width="343dp"
-        android:layout_height="257dp"
+        android:layout_width="394dp"
+        android:layout_height="253dp"
         android:layout_marginTop="4dp"
         android:background="@android:color/transparent"
         android:text=""
@@ -39,8 +41,8 @@
 
     <Button
         android:id="@+id/eyebutton"
-        android:layout_width="345dp"
-        android:layout_height="224dp"
+        android:layout_width="391dp"
+        android:layout_height="229dp"
         android:layout_marginTop="3dp"
         android:background="@android:color/transparent"
         android:text=""

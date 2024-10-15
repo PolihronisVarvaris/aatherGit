@@ -33,6 +33,7 @@ class NoiseTester : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_noise_tester)
+        val backButton = findViewById<Button>(R.id.backbutton)
 
         startButton = findViewById(R.id.startButton)
         shakeButton = findViewById(R.id.shakeButton)
@@ -66,6 +67,10 @@ class NoiseTester : AppCompatActivity() {
             override fun onStartTrackingTouch(seekBar: SeekBar?) {}
             override fun onStopTrackingTouch(seekBar: SeekBar?) {}
         })
+
+        backButton.setOnClickListener {
+            finish()  // Finish the current activity and go back to the previous one
+        }
     }
 
     private fun startRecording() {
