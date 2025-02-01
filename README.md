@@ -10,7 +10,8 @@ Aather is an Android mobile application designed to assist individuals with visu
 - **Live Assistance**: Connects users with volunteers for real-time support (Currently in development).
 - **Accessibility Tools**: Includes magnifiers, text-to-speech conversion etc.
 - **Emergency SOS**: A dedicated emergency feature for quick assistance.
-  
+![applibannerleit](https://github.com/user-attachments/assets/40e9f6ab-e73d-4cb3-99e0-59b06d836e62)
+
 ## Technologies Used
 - **Programming Language**: Kotlin
 - **Frameworks & Tools**: Android Studio, Firebase, TensorFlow Lite
