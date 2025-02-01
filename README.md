@@ -6,7 +6,7 @@ Aather is an Android mobile application designed to assist individuals with visu
 
 ## Features
 - **Image Recognition**: Assists in identifying objects, text, and colors for visually impaired users.
-![bemyeyesbackimage](https://github.com/user-attachments/assets/8769301c-da2e-42d2-96fa-24084b4b91f1)
+<img src=(https://github.com/user-attachments/assets/8769301c-da2e-42d2-96fa-24084b4b91f1) width="20%">
 
 - **Sign Language Learning**: Provides an AI-powered tool to recognize and teach sign language (GSL).
 ![edusignbackimage](https://github.com/user-attachments/assets/8199e926-2928-4f10-a7c8-575002c4b8c1)
