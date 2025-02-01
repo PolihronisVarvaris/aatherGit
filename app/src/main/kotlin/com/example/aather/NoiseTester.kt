@@ -6,6 +6,7 @@ import android.os.*
 import android.widget.Button
 import android.widget.SeekBar
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import java.io.File
 import java.io.IOException
@@ -21,14 +22,13 @@ class NoiseTester : AppCompatActivity() {
     private lateinit var averageVolumeText: TextView
     private lateinit var minVolumeText: TextView
     private lateinit var maxVolumeText: TextView
-    private lateinit var shakeButton: Button
     private lateinit var intensitySeekBar: SeekBar
     private var volumes: MutableList<Int> = mutableListOf()
     private lateinit var vibrator: Vibrator
     private val handler = Handler(Looper.getMainLooper())
 
     private var averageVolume = 0
-    private var hapticIntensity = 1 // Default haptic intensity
+    private var hapticIntensity = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,7 +36,6 @@ class NoiseTester : AppCompatActivity() {
         val backButton = findViewById<Button>(R.id.backbutton)
 
         startButton = findViewById(R.id.startButton)
-        shakeButton = findViewById(R.id.shakeButton)
         volumeText = findViewById(R.id.volumeText)
         averageVolumeText = findViewById(R.id.averageVolumeText)
         minVolumeText = findViewById(R.id.minVolumeText)
@@ -53,28 +52,39 @@ class NoiseTester : AppCompatActivity() {
             }
         }
 
-        shakeButton.setOnClickListener {
-            startContinuousVibration()
-        }
 
-        intensitySeekBar.max = 10 // Assuming the intensity scale is from 1 to 10
-        intensitySeekBar.progress = hapticIntensity
+        intensitySeekBar.max = 9
+        intensitySeekBar.progress = 0
         intensitySeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                hapticIntensity = progress.coerceIn(1, 10)
+                hapticIntensity = (progress * 254/ 10).coerceIn(1, 254)
+
+                val vibrationDuration = (progress * 1000 / 10).coerceIn(1, 1000)
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    val effect = VibrationEffect.createOneShot(vibrationDuration.toLong(), hapticIntensity)
+                    vibrator.vibrate(effect)
+                } else {
+                    @Suppress("DEPRECATION")
+                    vibrator.vibrate(vibrationDuration.toLong())
+                }
             }
 
-            override fun onStartTrackingTouch(seekBar: SeekBar?) {}
-            override fun onStopTrackingTouch(seekBar: SeekBar?) {}
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {
+
+            }
+
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {
+
+            }
         })
 
         backButton.setOnClickListener {
-            finish()  // Finish the current activity and go back to the previous one
+            finish()
         }
     }
 
     private fun startRecording() {
-        // Clear the volumes list
         volumes.clear()
 
         val audioFile = File(externalCacheDir, "temp_audio.3gp")
@@ -105,7 +115,6 @@ class NoiseTester : AppCompatActivity() {
         displayStatistics()
         stopContinuousVibration()
 
-        // Reset the average volume
         averageVolume = 0
     }
 
@@ -118,27 +127,54 @@ class NoiseTester : AppCompatActivity() {
                     volumeText.text = "Volume: $volumeInDb dB"
                     volumes.add(volumeInDb)
 
-                    // Calculate the average volume
-                    averageVolume = volumes.average().toInt()
-                    averageVolumeText.text = "Average Volume: $averageVolume dB"
+                    val mappedIntensity = mapVolumeToIntensity(volumeInDb)
 
-                    // Adjust the vibration power to be within the range of 0-260 (scaled from 0-130 dB)
-                    val vibrationPower = averageVolume.coerceIn(0, 130) * hapticIntensity * 2
-                    updateVibrationPower(vibrationPower)
+                    updateVibrationPower(mappedIntensity)
 
-                    handler.postDelayed(this, 100) // Update every 100 milliseconds
+                    handler.postDelayed(this, 100)
                 }
             }
         })
     }
 
+
+    private fun mapVolumeToIntensity(volumeInDb: Int): Int {
+        return when {
+            volumeInDb in 40..55 -> {
+                1
+            }
+            volumeInDb in 56..70 -> {
+
+                val intensity = ((volumeInDb - 55) * 100 / 15) + 1
+                intensity.coerceIn(1, 10)
+            }
+            volumeInDb in 71..80 -> {
+                val intensity = ((volumeInDb - 70) * 200 / 10) + 100
+                intensity.coerceIn(11, 100)
+            }
+            volumeInDb in 81..90 -> {
+                val intensity = ((volumeInDb - 80) * 100 / 10) + 300
+                intensity.coerceIn(101, 210)
+            }
+            volumeInDb in 91..110 -> {
+                val intensity = ((volumeInDb - 90) * 80 / 20) + 400
+                intensity.coerceIn(211, 254)
+            }
+            else -> {
+                0
+            }
+        }
+    }
+
+
+
     private fun displayStatistics() {
-        val positiveVolumes = volumes.filter { it >= 0 } // Filter out negative volumes
+        val positiveVolumes = volumes.filter { it >= 0 }
 
         if (positiveVolumes.isNotEmpty()) {
             val averageVolume = positiveVolumes.average().toInt()
 
-            // Filter out volumes that are too far from the average
+
             val filteredVolumes = positiveVolumes.filter { it in averageVolume - 12..averageVolume + 12 }
 
             val minVolume = filteredVolumes.minOrNull() ?: 0
@@ -148,29 +184,29 @@ class NoiseTester : AppCompatActivity() {
             minVolumeText.text = "Min Volume: $minVolume dB"
             maxVolumeText.text = "Max Volume: $maxVolume dB"
         } else {
-            // If there are no positive volumes, display default values
+
             averageVolumeText.text = "Average Volume: 0 dB"
             minVolumeText.text = "Min Volume: 0 dB"
             maxVolumeText.text = "Max Volume: 0 dB"
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private fun startContinuousVibration() {
-        val maxAmplitude = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            VibrationEffect.DEFAULT_AMPLITUDE
-        } else {
-            // For SDK versions below O, use the maximum amplitude
-            255
-        }
+        val vibratePattern = longArrayOf(0, 400, 800, 600, 800, 800, 800, 1000)
+        val amplitudes = intArrayOf(0, 50, 0, 100, 0, 150, 0, 255)
 
-        val vibrationEffect = VibrationEffect.createOneShot(100, maxAmplitude)
-        vibrator.vibrate(vibrationEffect)
+
+        if (vibrator.hasAmplitudeControl()) {
+            val effect = VibrationEffect.createWaveform(vibratePattern, amplitudes, -1)
+            vibrator.vibrate(effect)
+        }
     }
 
     private fun updateVibrationPower(power: Int) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val timings = LongArray(100) { 10 } // 100 segments, each 10 ms
-            val amplitudes = IntArray(100) { power } // Update with current power
+            val timings = LongArray(100) { 10 }
+            val amplitudes = IntArray(100) { power }
             val vibrationEffect = VibrationEffect.createWaveform(timings, amplitudes, 0)
             vibrator.vibrate(vibrationEffect)
         } else {

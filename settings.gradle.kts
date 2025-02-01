@@ -18,4 +18,6 @@ dependencyResolutionManagement {
 
 
 rootProject.name = "Aather"
-include(":app",":openCVLibrary3413")
+include(":app",":opencv")
+
+

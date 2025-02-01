@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SplashActivity">
+
+    <ImageView
+        android:id="@+id/setttingsback"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/settingbackroundsecond"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="-181dp" />
+
+    <Button
+        android:id="@+id/backbutton"
+        android:layout_width="66dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="16dp"
+        android:background="@android:color/transparent"
+        android:text=""
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.084"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/shakebutton"
+        android:layout_width="243dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="196dp"
+        android:background="@android:color/transparent"
+        android:text=""
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/vibrateButton"
+        android:layout_width="251dp"
+        android:layout_height="31dp"
+        android:layout_marginTop="340dp"
+        android:background="@android:color/transparent"
+        android:text=""
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/rotatebutton"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="468dp"
+        android:background="@android:color/transparent"
+        android:text=""
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/announcebutton"
+        android:layout_width="254dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="604dp"
+        android:background="@android:color/transparent"
+        android:text=""
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

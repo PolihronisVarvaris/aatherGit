@@ -18,8 +18,8 @@ import com.google.firebase.database.FirebaseDatabase
 class Intro : AppCompatActivity() {
 
     private lateinit var database: DatabaseReference
-    private var currentUserId: String? = null // To store the current user's ID
-    private var username: String? = null // Store the username
+    private var currentUserId: String? = null
+    private var username: String? = null
 
     private lateinit var imageView: ImageView
     private lateinit var signUpButton: Button
@@ -32,7 +32,7 @@ class Intro : AppCompatActivity() {
     private lateinit var hearingButton: Button
     private lateinit var volunteerButton: Button
     private lateinit var eyeButton: Button
-    private lateinit var imageChoices: ImageView // Assuming this is your image view
+    private lateinit var imageChoices: ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,7 +56,7 @@ class Intro : AppCompatActivity() {
         hearingButton = findViewById(R.id.hearingbutton)
         volunteerButton = findViewById(R.id.volunteerbutton)
         eyeButton = findViewById(R.id.eyebutton)
-        imageChoices = findViewById(R.id.imagechoices) // Ensure this is initialized
+        imageChoices = findViewById(R.id.imagechoices)
     }
 
     private fun loadAnimation() {
@@ -87,17 +87,65 @@ class Intro : AppCompatActivity() {
 
     private fun onSignUpClick() {
         fadeOutButtons(signUpButton, loginButton) {
-            moveImageToTop() // Move the image to the top after buttons disappear
+            moveImageToTop()
         }
     }
 
     private fun onLoginClick() {
-        // You might want to handle login functionality here
-        val intent = Intent(this, LoginActivity::class.java)
-        startActivity(intent)
+        fadeOutButtons(signUpButton, loginButton) {
+            showLoginFields()
+        }
     }
 
-//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
+    private fun showLoginFields() {
+        usernameEditText.visibility = View.VISIBLE
+        passwordEditText.visibility = View.VISIBLE
+        submitButton.visibility = View.VISIBLE
+
+        val fadeIn = AnimationUtils.loadAnimation(applicationContext, R.anim.fade_in)
+        usernameEditText.startAnimation(fadeIn)
+        passwordEditText.startAnimation(fadeIn)
+        submitButton.startAnimation(fadeIn)
+
+        submitButton.text = "Login"
+
+        submitButton.setOnClickListener {
+            val username = usernameEditText.text.toString()
+            val password = passwordEditText.text.toString()
+
+            if (username.isEmpty() || password.isEmpty()) {
+                Toast.makeText(this, "Please enter both username and password", Toast.LENGTH_SHORT).show()
+            } else {
+                checkUserCredentials(username, password)
+            }
+        }
+    }
+
+    private fun checkUserCredentials(username: String, password: String) {
+        database.child("users").orderByChild("username").equalTo(username).get()
+            .addOnSuccessListener { dataSnapshot ->
+                if (dataSnapshot.exists()) {
+                    for (childSnapshot in dataSnapshot.children) {
+                        val userPassword = childSnapshot.child("password").getValue(String::class.java)
+                        val usage = childSnapshot.child("usage").getValue(String::class.java)
+
+                        if (userPassword == password) {
+                            currentUserId = childSnapshot.key
+                            Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT).show()
+                            navigateToNextScreen(usage ?: "eyes")
+                            return@addOnSuccessListener
+                        }
+                    }
+                    Toast.makeText(this, "Incorrect password", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(this, "User not found", Toast.LENGTH_SHORT).show()
+                }
+            }
+            .addOnFailureListener { exception ->
+                Toast.makeText(this, "Login failed: ${exception.message}", Toast.LENGTH_SHORT).show()
+            }
+    }
+
 
     private fun fadeOutButtons(button1: Button, button2: Button, onComplete: () -> Unit) {
         val fadeOut = AnimationUtils.loadAnimation(applicationContext, R.anim.fade_out)
@@ -151,7 +199,6 @@ class Intro : AppCompatActivity() {
     }
 
     private fun registerUser(username: String, password: String, height: String, sosContact: String) {
-        // Create a user map to store the data
         val user = mapOf(
             "username" to username,
             "password" to password,
@@ -159,15 +206,14 @@ class Intro : AppCompatActivity() {
             "sosContact" to sosContact
         )
 
-        // Push the user data to Firebase under the "users" node
-        val newUserRef = database.child("users").push() // Get a reference for the new user
+        val newUserRef = database.child("users").push()
         newUserRef.setValue(user)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    currentUserId = newUserRef.key // Store the user ID
+                    currentUserId = newUserRef.key
                     retrieveUserName(currentUserId!!) { fetchedUsername ->
                         if (fetchedUsername != null) {
-                            this.username = fetchedUsername // Now this works as username is var
+                            this.username = fetchedUsername
                             Toast.makeText(this, "Username retrieved: $fetchedUsername", Toast.LENGTH_SHORT).show()
                         } else {
                             Toast.makeText(this, "Failed to retrieve username", Toast.LENGTH_SHORT).show()
@@ -185,7 +231,6 @@ class Intro : AppCompatActivity() {
     private fun fadeOutEditTextsAndSubmitButton(onComplete: () -> Unit) {
         val fadeOut = AnimationUtils.loadAnimation(applicationContext, R.anim.fade_out)
 
-        // Apply fade out to all EditTexts and the submit button
         usernameEditText.startAnimation(fadeOut)
         passwordEditText.startAnimation(fadeOut)
         heightEditText.startAnimation(fadeOut)
@@ -214,7 +259,6 @@ class Intro : AppCompatActivity() {
         fadeIn.setAnimationListener(object : Animation.AnimationListener {
             override fun onAnimationStart(animation: Animation?) {}
             override fun onAnimationEnd(animation: Animation?) {
-                // Make the buttons clickable now that the image has faded in
                 showUsageButtons()
             }
             override fun onAnimationRepeat(animation: Animation?) {}
@@ -226,12 +270,10 @@ class Intro : AppCompatActivity() {
         volunteerButton.visibility = View.VISIBLE
         eyeButton.visibility = View.VISIBLE
 
-        // Load fade-in for the buttons
         hearingButton.startAnimation(AnimationUtils.loadAnimation(applicationContext, R.anim.fade_in))
         volunteerButton.startAnimation(AnimationUtils.loadAnimation(applicationContext, R.anim.fade_in))
         eyeButton.startAnimation(AnimationUtils.loadAnimation(applicationContext, R.anim.fade_in))
 
-        // Set button click listeners for usage updates
         hearingButton.setOnClickListener { currentUserId?.let { updateUserUsage(it, "ears") } }
         volunteerButton.setOnClickListener { currentUserId?.let { updateUserUsage(it, "eyes") } }
         eyeButton.setOnClickListener { currentUserId?.let { updateUserUsage(it, "volunteer") } }
@@ -239,8 +281,6 @@ class Intro : AppCompatActivity() {
 
     private fun updateUserUsage(userId: String, usage: String) {
         val usageUpdate = mapOf("usage" to usage)
-
-        // Update the usage field in Firebase for the specific user
         database.child("users").child(userId).updateChildren(usageUpdate)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
@@ -253,29 +293,26 @@ class Intro : AppCompatActivity() {
     }
 
     private fun navigateToNextScreen(usage: String) {
-        // Use the correct activities based on the user's choice
-        val usernameforparametre = usernameEditText.text.toString() // Get the username from the EditText
+        val usernameforparametre = usernameEditText.text.toString()
         val intent = when (usage) {
-            "volunteer" -> Intent(this, VolunteerChoice::class.java) // For volunteer users
-            "eyes" -> Intent(this, EyesChoice::class.java) // For eyes users
-            "ears" -> Intent(this, EarsChoice::class.java) // For hearing users
-            else -> Intent(this, EyesChoice::class.java) // Default fallback case (eyes)
+            "volunteer" -> Intent(this, VolunteerChoice::class.java)
+            "eyes" -> Intent(this, EyesChoice::class.java)
+            "ears" -> Intent(this, EarsChoice::class.java)
+            else -> Intent(this, EyesChoice::class.java)
         }
 
-        // Pass the username to the next activity
         intent.putExtra("USERNAME", usernameforparametre)
 
-        // Start the next activity
         startActivity(intent)
     }
 
     private fun retrieveUserName(userId: String, onUserNameFetched: (String?) -> Unit) {
         database.child("users").child(userId).child("username").get().addOnSuccessListener { snapshot ->
             val username = snapshot.getValue(String::class.java)
-            onUserNameFetched(username) // Return the fetched username
+            onUserNameFetched(username)
         }.addOnFailureListener { exception ->
             Log.e("FirebaseError", "Error fetching username: ${exception.message}")
-            onUserNameFetched(null) // Return null if there was an error
+            onUserNameFetched(null)
         }
     }
 

@@ -118,6 +118,43 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signUpButton" />
 
+
+    <EditText
+        android:id="@+id/usernamelogin"
+        android:layout_width="251dp"
+        android:layout_height="59dp"
+        android:layout_marginTop="64dp"
+        android:background="@drawable/rounded_edittext"
+        android:gravity="center"
+        android:hint="Username"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textColorHint="#000000"
+        android:textCursorDrawable="@drawable/cursor_color"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signUpButton" />
+
+    <EditText
+        android:id="@+id/passwordlogin"
+        android:layout_width="251dp"
+        android:layout_height="59dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/rounded_edittext"
+        android:textCursorDrawable="@drawable/cursor_color"
+        android:hint="Password"
+        android:textColor="#000000"
+        android:textColorHint="#000000"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/username" />
+
     <EditText
         android:id="@+id/password"
         android:layout_width="251dp"
@@ -176,16 +213,17 @@
 
     <Button
         android:id="@+id/sumbitButton"
-        android:layout_width="72dp"
-        android:layout_height="72dp"
+        android:layout_width="145dp"
+        android:layout_height="57dp"
+        android:layout_marginBottom="24dp"
         android:backgroundTint="@color/white"
-        android:text=">"
+        android:text="Sign up"
         android:textColor="#000000"
         android:textStyle="bold"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.976"
+        app:layout_constraintHorizontal_bias="0.906"
         app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,35 +4,27 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.os.Handler
-import android.os.PowerManager
+import android.widget.Toast
 
 class PowerButtonReceiver : BroadcastReceiver() {
-    private var powerButtonPressTime: Long = 0
-    private var isPowerButtonPressed = false
-    private val handler = Handler()
-    private val delayMillis: Long = 5000 // 5 seconds
 
-    override fun onReceive(context: Context?, intent: Intent?) {
-//        when (intent?.action) {
-//            Intent.ACTION_SCREEN_OFF -> {
-//                // Reset flag and time when screen is turned off
-//                isPowerButtonPressed = false
-//                powerButtonPressTime = 0
-//            }
-//            Intent.ACTION_SCREEN_ON -> {
-//                if (isPowerButtonPressed) {
-//                    // If screen is turned on and power button is still pressed, start SOSbutton activity
-//                    val currentTime = System.currentTimeMillis()
-//                    if (currentTime - powerButtonPressTime >= delayMillis) {
-//                        val startIntent = Intent(context, SOSbutton::class.java)
-//                        startIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-//                        context?.startActivity(startIntent)
-//                    }
-//                    // Reset flag and time
-//                    isPowerButtonPressed = false
-//                    powerButtonPressTime = 0
-//                }
-//            }
-//        }
+    private var handler: Handler = Handler()
+    private var startTime: Long = 0
+    private val longPressDuration: Long = 15000
+
+    override fun onReceive(context: Context, intent: Intent) {
+        if (intent.action == Intent.ACTION_SCREEN_OFF) {
+            startTime = System.currentTimeMillis()
+            handler.postDelayed({
+                if (System.currentTimeMillis() - startTime >= longPressDuration) {
+                    val sosIntent = Intent(context, SOSbutton::class.java)
+                    sosIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                    context.startActivity(sosIntent)
+                    Toast.makeText(context, "SOS triggered!", Toast.LENGTH_SHORT).show()
+                }
+            }, longPressDuration)
+        } else if (intent.action == Intent.ACTION_SCREEN_ON) {
+            handler.removeCallbacksAndMessages(null)
+        }
     }
 }

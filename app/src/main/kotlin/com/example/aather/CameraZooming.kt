@@ -92,15 +92,13 @@ class CameraZooming: AppCompatActivity() {
                         Toast.LENGTH_SHORT
                     ).show()
 
-                    // Save the image to the device gallery
                     saveImageToGallery(savedUri)
 
-                    // Start com.example.aather.SizeZoom activity and pass the photo URI
                     val intent = Intent(this@CameraZooming, Size_image::class.java).apply {
                         putExtra("photo_uri", savedUri.toString())
                     }
                     startActivity(intent)
-                    finish() // Finish the current activity to remove it from the back stack
+                    finish()
                 }
 
                 override fun onError(exception: ImageCaptureException) {
@@ -114,7 +112,6 @@ class CameraZooming: AppCompatActivity() {
     }
 
     private fun saveImageToGallery(imageUri: Uri) {
-        // Define the content values for the image to be inserted into MediaStore
         val contentValues = ContentValues().apply {
             put(MediaStore.Images.Media.DISPLAY_NAME, "Captured_Image_${System.currentTimeMillis()}.jpg")
             put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg")
@@ -123,7 +120,6 @@ class CameraZooming: AppCompatActivity() {
             put(MediaStore.Images.Media.RELATIVE_PATH, Environment.DIRECTORY_DCIM)
         }
 
-        // Use content resolver to insert the image into MediaStore
         val contentResolver = applicationContext.contentResolver
         var uri: Uri? = null
         try {

@@ -89,17 +89,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/shakeButton"
-        android:layout_width="112dp"
-        android:layout_height="96dp"
-        android:layout_marginBottom="176dp"
-        android:text="Shake Phone"
-        android:background="@android:color/transparent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.953"
-        app:layout_constraintStart_toStartOf="parent" />
 
 
     <Button

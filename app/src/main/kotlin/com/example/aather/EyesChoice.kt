@@ -29,20 +29,15 @@ class EyesChoice : AppCompatActivity() {
 
         database = FirebaseDatabase.getInstance().reference
 
-        // Get the current user's ID from Firebase Authentication
         val user = FirebaseAuth.getInstance().currentUser
 
         firebaseClient = FirebaseClient(database, Gson())
 
-        // Fetch the user usage type
         fetchUserUsage()
     }
 
     private fun fetchUserUsage() {
         firebaseClient.fetchUserUsageFromDatabase(currentUserId) { userUsage ->
-            // Now you have the userUsage value (e.g., "volunteer", "eyes", "ears")
-
-            // Continue with setting up the ViewPager once the usage is fetched
             postToList()
             val viewPager2 = findViewById<ViewPager2>(R.id.view_pager2)
             val adapter = ViewPagerAdapter(titleList, imagesList, currentUserId,database)
@@ -52,7 +47,6 @@ class EyesChoice : AppCompatActivity() {
             val indicator = findViewById<CircleIndicator3>(R.id.indicator)
             indicator.setViewPager(viewPager2)
 
-            // Add a PageTransformer to apply a pop animation while scrolling
             viewPager2.setPageTransformer { page, position ->
                 val imagePop = page.findViewById<ImageView>(R.id.imagepop)
                 if (position >= -1 && position <= 1) {
@@ -87,10 +81,10 @@ class EyesChoice : AppCompatActivity() {
     private fun retrieveUsage(userId: String, onUserNameFetched: (String?) -> Unit) {
         database.child("users").child(userId).child("username").get().addOnSuccessListener { snapshot ->
             val username = snapshot.getValue(String::class.java)
-            onUserNameFetched(username) // Return the fetched username
+            onUserNameFetched(username)
         }.addOnFailureListener { exception ->
             Log.e("FirebaseError", "Error fetching username: ${exception.message}")
-            onUserNameFetched(null) // Return null if there was an error
+            onUserNameFetched(null)
         }
     }
 }

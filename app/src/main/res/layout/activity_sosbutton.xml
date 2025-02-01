@@ -10,10 +10,33 @@
         android:id="@+id/sosphoto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:alpha="1"
         android:scaleType="centerCrop"
         android:src="@drawable/sosbackimage"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="-181dp" />
+
+    <ImageView
+        android:id="@+id/sosphotosecond"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0"
+        android:scaleType="centerCrop"
+        android:src="@drawable/sosbackimagesecond"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="-181dp" />
+
+    <Button
+        android:id="@+id/backbutton"
+        android:layout_width="66dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="28dp"
+        android:background="@android:color/transparent"
+        android:text=""
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.086"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

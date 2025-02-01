@@ -21,17 +21,27 @@
         app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/picktozoomin" />
 
-    <com.ortiz.touchview.TouchImageView
-        android:id="@+id/imageviwzoom"
-        android:layout_width="320dp"
-        android:layout_height="540dp"
-        android:scaleType="centerCrop"
+    <FrameLayout
+        android:id="@+id/photoViewContainer"
+        android:layout_width="300dp"
+        android:layout_height="510dp"
+        android:layout_centerInParent="true"
+        android:background="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/backimagesizezoom"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.439" />
+        app:layout_constraintVertical_bias="0.452">
 
+        <com.github.chrisbanes.photoview.PhotoView
+            android:id="@+id/photoView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerInside"
+            tools:layout_editor_absoluteX="54dp"
+            tools:layout_editor_absoluteY="98dp" />
+    </FrameLayout>
 
     <Button
         android:id="@+id/previesfromgallery"

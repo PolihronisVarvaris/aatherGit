@@ -12,7 +12,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/aiimagetextbackimage"
+        android:src="@drawable/aiimagetextbackimagenew"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -20,18 +20,18 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
 
+
     <Button
         android:id="@+id/btnPhotoAi"
         android:layout_width="138dp"
         android:layout_height="136dp"
-        android:layout_marginBottom="56dp"
+        android:layout_marginBottom="16dp"
         android:background="@android:color/transparent"
         android:text=""
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
-
 
     <ImageView
         android:id="@+id/imagefortxtgeneretion"
@@ -46,15 +46,62 @@
 
     <TextView
         android:id="@+id/textgeneretedbyai"
-        android:layout_width="297dp"
-        android:layout_height="323dp"
-        android:layout_marginTop="40dp"
-        android:text="TextView"
+        android:layout_width="336dp"
+        android:layout_height="336dp"
+        android:layout_marginTop="44dp"
+        android:text="Επιλέξτε μια εικόνα από τη συσκευή σας ή τραβήξτε μια νέα φωτογραφία"
         android:textColor="@color/white"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imagefortxtgeneretion" />
+
+    <Button
+        android:id="@+id/btngalerry"
+        android:layout_width="111dp"
+        android:layout_height="95dp"
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="20dp"
+        android:text=""
+        android:background="@android:color/transparent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btndetect"
+        android:layout_width="104dp"
+        android:layout_height="98dp"
+        android:layout_marginTop="152dp"
+        android:layout_marginEnd="28dp"
+        android:text=""
+        android:background="@android:color/transparent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/backbutton"
+        android:layout_width="63dp"
+        android:layout_height="73dp"
+        android:layout_marginTop="24dp"
+        android:background="@android:color/transparent"
+        android:text=""
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.02"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/soundbutton"
+        android:layout_width="59dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="600dp"
+        android:background="@android:color/transparent"
+        android:text=""
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.92"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,11 +4,12 @@ plugins {
     id("com.google.gms.google-services")
     id("kotlin-kapt")
     id("com.google.dagger.hilt.android")
+    id("androidx.navigation.safeargs")
 }
 
 android {
     namespace = "com.example.aather"
-    compileSdk = 34
+    compileSdk = 35
 
     sourceSets {
         getByName("main") {
@@ -75,43 +76,27 @@ android {
 }
 
 dependencies {
-    // Firebase and Google Play services dependencies
-    // implementation(platform("com.google.firebase:firebase-bom:32.1.1"))
-    // implementation("com.google.firebase:firebase-analytics")
-    // implementation("com.google.firebase:firebase-auth")
-    // implementation("com.google.android.gms:play-services-vision:20.1.3")
 
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar", "*.aar"))))
-
-    implementation(project(":openCVLibrary3413"))
-
-    // TensorFlow Lite
-    implementation ("org.tensorflow:tensorflow-lite-metadata:0.1.0-rc1")
-    implementation ("org.tensorflow:tensorflow-lite-gpu:2.2.0")
-    implementation ("org.tensorflow:tensorflow-lite-support:0.1.0")
-    implementation ("org.tensorflow:tensorflow-lite-task-vision:0.1.0")
-    implementation ("org.tensorflow:tensorflow-lite-task-text:0.1.0")
-
-
-    implementation ("com.github.MikeOrtiz:TouchImageView:1.4.1")
-
+    implementation ("com.github.chrisbanes:PhotoView:2.3.0")
+    val navVersion = "2.6.0"
+    implementation("androidx.navigation:navigation-fragment-ktx:$navVersion")
+    implementation("androidx.navigation:navigation-ui-ktx:$navVersion")
     implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation ("com.squareup.okhttp3:okhttp:4.9.0")
-
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.11.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-    implementation("androidx.navigation:navigation-fragment-ktx:2.6.0")
     implementation("androidx.navigation:navigation-ui-ktx:2.6.0")
     implementation("com.google.android.gms:play-services-location:21.2.0")
     implementation("com.google.firebase:firebase-database-ktx:21.0.0")
     implementation("com.google.firebase:firebase-auth-ktx:23.0.0")
+    implementation(project(":opencv"))
+    //implementation("com.google.ai.edge.litert:litert-gpu:1.0.1")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
-
-
     implementation("androidx.viewpager2:viewpager2:1.0.0")
     implementation("me.relex:circleindicator:2.1.6")
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
@@ -129,7 +114,18 @@ dependencies {
     implementation ("com.google.code.gson:gson:2.10.1")
     implementation ("com.mesibo.api:webrtc:1.0.5")
     implementation ("com.guolindev.permissionx:permissionx:1.6.1")
+    implementation ("com.google.firebase:firebase-ml-vision:15.0.0")
 
+    // To recognize Latin script
+    implementation ("com.google.mlkit:text-recognition:16.0.1")
+    // To recognize Chinese script
+    implementation ("com.google.mlkit:text-recognition-chinese:16.0.1")
+    // To recognize Devanagari script
+    implementation ("com.google.mlkit:text-recognition-devanagari:16.0.1")
+    // To recognize Japanese script
+    implementation ("com.google.mlkit:text-recognition-japanese:16.0.1")
+    // To recognize Korean script
+    implementation ("com.google.mlkit:text-recognition-korean:16.0.1")
 
 }
 //
