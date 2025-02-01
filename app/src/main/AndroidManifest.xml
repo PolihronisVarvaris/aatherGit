@@ -63,6 +63,9 @@
             android:name=".MainActivity"
             android:exported="false" />
         <activity
+            android:name=".InDevel"
+            android:exported="false" />
+        <activity
             android:name=".VolunteerChoice"
             android:exported="false" />
         <activity

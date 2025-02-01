@@ -100,11 +100,11 @@ class ViewPagerAdapter(
 
     private fun handleVolunteerClick(position: Int, context: Context): Intent {
         return when (position) {
-            0 -> {Intent(context, SOSbutton::class.java) }
+            0 -> {Intent(context, InDevel::class.java) }
             1 -> Intent(context, PickColorFilter::class.java)
             2 -> Intent(context, SignEduAi::class.java)
             3 -> Intent(context, SplashActivity::class.java)
-            4 -> Intent(context, SOSbutton::class.java)
+            4 -> Intent(context, InDevel::class.java)
             else -> Intent(context, EarsChoice::class.java)
         }
     }
@@ -112,7 +112,7 @@ class ViewPagerAdapter(
     private fun handleEyesClick(position: Int, context: Context): Intent {
         return when (position) {
             0 -> {
-                val intent = Intent(context, SOSbutton::class.java)
+                val intent = Intent(context, InDevel::class.java)
                 intent.putExtra("USERNAME", currentUserId)
                 intent
             }
@@ -127,7 +127,7 @@ class ViewPagerAdapter(
     private fun handleEarsClick(position: Int, context: Context): Intent {
         return when (position) {
             0 -> {
-                val intent = Intent(context, SOSbutton::class.java)
+                val intent = Intent(context, InDevel::class.java)
                 intent.putExtra("USER_ID", currentUserId)
                 intent
             }
