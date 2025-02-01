@@ -1,6 +1,9 @@
 # Aather - Personal Assistant for Visually Impaired Users
 ![aatherthesis](https://github.com/user-attachments/assets/a917e3d4-04d3-469f-a1d2-0831a0c407df)
 
+## Thesis and rest of the files
+**https://drive.google.com/drive/folders/1DssyG4b9f5sKoNC9UCJBVSZlvb0EUiYm?usp=sharing**
+
 ## Overview
 Aather is an Android mobile application designed to assist individuals with visual and auditory impairments in their daily lives. The application integrates modern technologies such as voice recognition, image processing, and real-time data handling to offer an accessible and user-friendly experience.
 
@@ -31,9 +34,6 @@ Aather is an Android mobile application designed to assist individuals with visu
 - Fork the repository and create a new branch for your feature.
 - Submit a pull request with detailed descriptions of your changes.
 - Ensure all code follows the accessibility and usability standards.
-
-## License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Acknowledgments
 Special thanks to the faculty of the **International Hellenic University**, Department of Information and Electronic Systems Engineering, for their support in the development of this project.
