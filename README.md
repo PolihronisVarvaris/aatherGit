@@ -1,5 +1,6 @@
 # Aather - Personal Assistant for Visually Impaired Users
-![Aather Thesis Cover](https://raw.githubusercontent.com/PolihronisVarvaris/aatherGit/b1aa3ddbf2767da7748b4b524258bfb9cc910753/aatherthesis.png)
+![aatherthesis](https://github.com/user-attachments/assets/a917e3d4-04d3-469f-a1d2-0831a0c407df)
+
 ## Overview
 Aather is an Android mobile application designed to assist individuals with visual and auditory impairments in their daily lives. The application integrates modern technologies such as voice recognition, image processing, and real-time data handling to offer an accessible and user-friendly experience.
 
